@@ -7,6 +7,16 @@ namespace ZuulCS
         private Room _currentRoom;
         public uint health = 100;
 
+        public Game game;
+        //private Inventory inventory;
+
+       // internal Inventory Inventory { get => inventory; }
+
+        public Player(){
+            //inventory = new Inventory(8);
+        }
+
+
         public void createRooms()
         {
             Room outside, theatre, pub, lab, office, cloud, uranus, ded;
@@ -58,6 +68,7 @@ namespace ZuulCS
             }else if(health <= 0)
             {
                 Console.WriteLine("You Died");
+                Environment.Exit(0);
             }
         }
 

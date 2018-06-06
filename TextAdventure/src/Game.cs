@@ -6,8 +6,10 @@ namespace ZuulCS
 	{
 		private Parser parser;
         private Player player;
+        public bool finished = false;
+        public bool wantToQuit = false;
 
-		public Game ()
+        public Game ()
 		{
             player = new Player();
             parser = new Parser();
@@ -24,12 +26,12 @@ namespace ZuulCS
 
 			// Enter the main command loop.  Here we repeatedly read commands and
 			// execute them until the game is over.
-			bool finished = false;
+			
 			while (! finished) {
 				Command command = parser.getCommand();
 				finished = processCommand(command);
             }
-			Console.WriteLine("Thank you for playing.");
+            Console.WriteLine("Thank you for playing.");
 
 		}
 
@@ -53,7 +55,7 @@ namespace ZuulCS
 	     */
 		private bool processCommand(Command command)
 		{
-			bool wantToQuit = false;
+			
 
 			if(command.isUnknown()) {
 				Console.WriteLine("I don't know what you mean...");
@@ -116,7 +118,6 @@ namespace ZuulCS
             }
             else
             {
-
                 player.Damage(5);
                 player.isAlive();
             }
