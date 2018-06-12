@@ -1,4 +1,5 @@
 ﻿using System;
+using TextAdventure.src;
 
 namespace ZuulCS
 {
@@ -7,51 +8,80 @@ namespace ZuulCS
         private Room _currentRoom;
         public uint health = 100;
 
-        public Game game;
-        //private Inventory inventory;
+        //public Game game;
 
-       // internal Inventory Inventory { get => inventory; }
+        private Inventory inventory;
 
-        public Player(){
-            //inventory = new Inventory(8);
+        internal Inventory Inventory { get => inventory; }
+
+        public Player()
+        {
+            inventory = new Inventory(8);
         }
-
 
         public void createRooms()
         {
-            Room outside, theatre, pub, lab, office, cloud, uranus, ded;
+            Room Big_Tree, Old_Shack, Cave, Path, shacksecondfloor, Village, Church, Blacksmith, House1, House2, ChurchAttic;
 
             // create the rooms
-            outside = new Room("outside the main entrance of the university");
-            theatre = new Room("in a lecture theatre");
-            pub = new Room("in the campus pub");
-            lab = new Room("in The Lab");
-            cloud = new Room("on a cloud");
-            office = new Room("in the office");
-            uranus = new Room("in uranus");
-            ded = new Room("splashed to ur death");
+            Big_Tree = new Room("next to a big tree");
+            Old_Shack = new Room("in an old empty Shack");
+            Cave = new Room("in a cave");
+            Path = new Room("at the path to get out of the forest");
+            shacksecondfloor = new Room("on the second floor of the shack");
+            Village = new Room("in a small village");
+            Church = new Room("in the church");
+            House1 = new Room("at a house");
+            House2 = new Room("in an empty house");
+            Blacksmith = new Room("at the blacksmith");
+            ChurchAttic = new Room("in the church attic");
 
             // initialise room exits
-            outside.setExit("east", theatre);
-            outside.setExit("south", lab);
-            outside.setExit("west", pub);
-            outside.setExit("up", cloud);
+            Big_Tree.setExit("east", Old_Shack);
+            Big_Tree.setExit("south", Cave);
+            Big_Tree.setExit("west", Path);
 
-            theatre.setExit("west", outside);
+            Old_Shack.setExit("west", Big_Tree);
+            Old_Shack.setExit("up", shacksecondfloor);
 
-            pub.setExit("east", outside);
+            Path.setExit("east", Big_Tree);
+            Path.setExit("west", Village);
 
-            lab.setExit("south", office);
-            lab.setExit("north", outside);
+            Village.setExit("east", Path);
+            Village.setExit("north", Church);
+            Village.setExit("south", Blacksmith);
+            Village.setExit("west", House1);
 
-            office.setExit("west", lab);
+            Church.setExit("up", ChurchAttic);
+            Church.setExit("south", Village);
 
-            cloud.setExit("down", outside);
-            cloud.setExit("up", uranus);
+            ChurchAttic.setExit("down", Church);
 
-            uranus.setExit("down", cloud);
+            Blacksmith.setExit("north", Village);
 
-            _currentRoom = outside;  // start game outside
+            House1.setExit("west", House2);
+            House1.setExit("east", Village);
+
+            House2.setExit("east", House1);
+
+            Cave.setExit("north", Big_Tree);
+
+            shacksecondfloor.setExit("down", Old_Shack);
+
+            _currentRoom = Big_Tree;  // start game outside
+
+            for (int i = 0; i < 1; i++)
+            {
+                Potion potion = new Potion();
+                Big_Tree.Inventory.addItem(potion);
+ 
+                Stake stake = new Stake();
+                Old_Shack.Inventory.addItem(stake);
+
+                BloodVial vial = new BloodVial();
+                shacksecondfloor.Inventory.addItem(vial);
+
+            }
         }
 
         public Room currentRoom

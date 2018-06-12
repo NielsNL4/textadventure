@@ -41,9 +41,11 @@ namespace ZuulCS
 		private void printWelcome()
 		{
 			Console.WriteLine();
-			Console.WriteLine("Welcome to Zuul!");
-			Console.WriteLine("Zuul is a new, incredibly boring adventure game.");
-			Console.WriteLine("Type 'help' if you need help.");
+            Console.WriteLine("U wake up with a terrible hunger.");
+            Console.WriteLine("You are lost. You are alone.");
+            Console.WriteLine("You wander around in a forest.");
+            Console.WriteLine();
+            Console.WriteLine("Type 'help' if you need help.");
 			Console.WriteLine();
 			Console.WriteLine(player.currentRoom.getLongDescription());
 		}
@@ -79,6 +81,12 @@ namespace ZuulCS
                 case "health":
                     showHealth();
                     break;
+                case "take":
+                    getItem(command);
+                    break;
+                case "inventory":
+                    showInventory();
+                    break;
 			}
 
 			return wantToQuit;
@@ -93,8 +101,9 @@ namespace ZuulCS
 	     */
 		private void printHelp()
 		{
+            Console.WriteLine("U wake up with a terrible hunger.");
 			Console.WriteLine("You are lost. You are alone.");
-			Console.WriteLine("You wander around at the university.");
+			Console.WriteLine("You wander around in a forest.");
 			Console.WriteLine();
 			Console.WriteLine("Your command words are:");
 			parser.showCommands();
@@ -103,6 +112,13 @@ namespace ZuulCS
         private void goLook()
         {
             Console.WriteLine(player.currentRoom.getLongDescription());
+            Console.WriteLine(player.currentRoom.Inventory.Items.Count + " Item(s) found!");
+            for (int i = 0; i < player.currentRoom.Inventory.Items.Count; i++)
+            {
+
+                Console.WriteLine((i + 1) + " | " + player.currentRoom.Inventory.Items[i].Name + ": " + player.currentRoom.Inventory.Items[i].Description);
+
+            }
         }
 
 		/**
@@ -135,10 +151,65 @@ namespace ZuulCS
 			}
 		}
 
+        private void showInventory()
+        {
+            for (int i = 0; i < player.Inventory.Items.Count; i++)
+            {
+
+                Console.WriteLine((i + 1) + " | " + player.Inventory.Items[i].Name + ": " + player.Inventory.Items[i].Description);
+
+            }
+        }
+
         private void showHealth()
         {
             Console.WriteLine(player.health);
         }
 
-	}
+        private void getItem(Command command)
+        {
+
+            if (!command.hasSecondWord())
+            {
+
+                if (player.currentRoom.Inventory.Items.Count < player.Inventory.WeightLeft)
+                {
+                    for (int i = player.currentRoom.Inventory.Items.Count; i >= 0; i--)
+                    {
+
+                        player.currentRoom.Inventory.sendItem(player.Inventory, player.currentRoom.Inventory.Items[i].Name);
+                        
+                    }
+
+
+                }
+                else
+                {
+
+                    Console.WriteLine("Not enough space in inventory to take item(s)!");
+
+                }
+
+
+            }
+            else
+            {
+
+                if (player.Inventory.WeightLeft > 0)
+                {
+
+                    player.currentRoom.Inventory.sendItem(player.Inventory, command.getSecondWord());
+                }
+                else
+                {
+
+                    Console.WriteLine("Not enough space in inventory to take item!");
+
+                }
+
+            }
+
+        }
+
+    }
 }

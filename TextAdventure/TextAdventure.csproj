@@ -43,12 +43,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\BloodVial.cs" />
     <Compile Include="src\Command.cs" />
     <Compile Include="src\CommandLibrary.cs" />
     <Compile Include="src\Game.cs" />
+    <Compile Include="src\Inventory.cs" />
+    <Compile Include="src\Item.cs" />
     <Compile Include="src\Parser.cs" />
     <Compile Include="src\Player.cs" />
+    <Compile Include="src\Potion.cs" />
     <Compile Include="src\Room.cs" />
+    <Compile Include="src\Stake.cs" />
     <Compile Include="src\Zuul.cs" />
   </ItemGroup>
   <ItemGroup>

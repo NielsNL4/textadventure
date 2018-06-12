@@ -17,7 +17,9 @@ namespace ZuulCS
 				"quit",
 				"help",
                 "look",
-                "health"
+                "health",
+                "take",
+                "inventory"
 			};
 		}
 
