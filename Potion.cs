@@ -14,9 +14,5 @@ namespace TextAdventure.src
             name = "potion";
             description = "gives back some health";
         }
-
-        public void Use()
-        {
-        }
     }
 }

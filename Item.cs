@@ -18,6 +18,7 @@ namespace TextAdventure.src
         public Item()
         { 
             name = "Item";
+
             description = "A strange looking object";          
         }
     }
