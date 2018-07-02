@@ -13,11 +13,7 @@ namespace TextAdventure.src
         public BloodVial()
         {
             name = "bloodvial";
-            description = "A vial filled with human blood";
-        }
-
-        public void Use()
-        {
+            description = "A vial filled with blood";
         }
     }
 }

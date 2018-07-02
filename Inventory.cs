@@ -72,10 +72,9 @@ namespace TextAdventure.src
             {
                 if (items[i].Name == key)
                 {
-                    if (key == "bloodvial" && player.health < 100)
+                    if (key == "bloodvial")
                     {
-                        player.Heal(25);
-                        player.isAlive();
+                        player.Damage(25);
                         items.Remove(items[i]);
                         return (true);
                     }

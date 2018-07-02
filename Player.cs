@@ -14,9 +14,6 @@ namespace ZuulCS
 
         internal Inventory Inventory { get => inventory; }
 
-        private Enemies enemies;
-        internal Enemies Enemies { get => enemies; }
-
         public Player()
         {
             inventory = new Inventory(8);
@@ -77,16 +74,20 @@ namespace ZuulCS
             {
                 Potion potion = new Potion();
                 Big_Tree.Inventory.addItem(potion);
+                Church.Inventory.addItem(potion);
+                Path.Inventory.addItem(potion);
  
                 Stake stake = new Stake();
                 Old_Shack.Inventory.addItem(stake);
+                House2.Inventory.addItem(stake);
+                Blacksmith.Inventory.addItem(stake);
 
                 BloodVial vial = new BloodVial();
                 shacksecondfloor.Inventory.addItem(vial);
-
-                Human human = new Human();
-                Old_Shack.Enemies.addEnemy(human);
-
+                Cave.Inventory.addItem(vial);
+                House1.Inventory.addItem(vial);
+                ChurchAttic.Inventory.addItem(vial);
+                
             }
         }
 

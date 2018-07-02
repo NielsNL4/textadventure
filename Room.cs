@@ -9,9 +9,7 @@ namespace ZuulCS
 		private Dictionary<string, Room> exits; // stores exits of this room.
 
         private Inventory inventory;
-        private Enemies enemies;
 
-        internal Enemies Enemies { get => enemies; }
         internal Inventory Inventory { get => inventory; }
 
         /**
@@ -22,7 +20,6 @@ namespace ZuulCS
         public Room(string description)
 		{
             inventory = new Inventory(99);
-            enemies = new Enemies(10);
 
             this.description = description;
 			exits = new Dictionary<string, Room>();

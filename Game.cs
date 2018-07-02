@@ -7,7 +7,6 @@ namespace ZuulCS
 	{
 		private Parser parser;
         private Player player;
-        private Enemies enemies;
         public bool finished = false;
         public bool wantToQuit = false;
 
@@ -100,9 +99,6 @@ namespace ZuulCS
                 case "hit":
                     hitMe();
                     break;
-                case "attack":
-                    AttackEnemy(command);
-                    break;
 
 			}
 
@@ -130,14 +126,9 @@ namespace ZuulCS
         {
             Console.WriteLine(player.currentRoom.getLongDescription());
             Console.WriteLine(player.currentRoom.Inventory.Items.Count + " Item(s) found!");
-            Console.WriteLine(player.currentRoom.Enemies._Enemies.Count + " Enem(y)(ies) here!");
             for (int i = 0; i < player.currentRoom.Inventory.Items.Count; i++)
             {
                 Console.WriteLine((i + 1) + " | " + player.currentRoom.Inventory.Items[i].Name + ": " + player.currentRoom.Inventory.Items[i].Description);
-            }
-            for (int i = 0; i < player.currentRoom.Enemies._Enemies.Count; i++)
-            {
-                Console.WriteLine((i + 1) + " | " + player.currentRoom.Enemies._Enemies[i].Name + ": " + player.currentRoom.Enemies._Enemies[i].Description);
             }
         }
 
@@ -163,6 +154,10 @@ namespace ZuulCS
 			} else {
 				player.currentRoom = nextRoom;
 				Console.WriteLine(player.currentRoom.getLongDescription());
+                if (player.health < 100 )
+                {
+                    player.Damage(5);
+                }
 			}
 		}
 
@@ -246,18 +241,6 @@ namespace ZuulCS
         private void hitMe()
         {
             player.Damage(10);
-        }
-
-        private void AttackEnemy(Command command)
-        {
-            if (!command.hasSecondWord())
-            {
-                Console.WriteLine("Attack what?");
-            }
-            else
-            {
-                player.currentRoom.Enemies.attackEnemy(command.getSecondWord(), enemies);
-            }
         }
     }
 }

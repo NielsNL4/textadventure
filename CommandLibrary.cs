@@ -22,8 +22,7 @@ namespace ZuulCS
                 "inventory",
                 "drop",
                 "use",
-                "hit",
-                "attack"
+                "hit"
 			};
 		}
 

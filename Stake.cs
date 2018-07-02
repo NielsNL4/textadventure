@@ -11,12 +11,7 @@ namespace TextAdventure.src
         public Stake()
         {
             name = "stake";
-            description = "A weapon that can kill vampires"; 
-        }
-
-        public void Use()
-        {
-            
+            description = "A weapon made of Wood"; 
         }
     }
 }
