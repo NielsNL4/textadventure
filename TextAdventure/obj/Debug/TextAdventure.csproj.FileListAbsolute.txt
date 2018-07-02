@@ -1,7 +1,0 @@
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\obj\Debug\TextAdventure.csprojResolveAssemblyReference.cache
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\obj\Debug\TextAdventure.csproj.CoreCompileInputs.cache
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\bin\Debug\TextAdventure.exe.config
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\bin\Debug\TextAdventure.exe
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\bin\Debug\TextAdventure.pdb
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\obj\Debug\TextAdventure.exe
-C:\Users\Laptop Niels\source\repos\TextAdventure\TextAdventure\obj\Debug\TextAdventure.pdb
