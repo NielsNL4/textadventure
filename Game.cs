@@ -151,7 +151,12 @@ namespace ZuulCS
 
 			if (nextRoom == null) {
 				Console.WriteLine("There is no door to "+direction+"!");
-			} else {
+			}
+            else if(nextRoom.Locked == true)
+            {
+                Console.WriteLine("This door is locked!");
+            }
+            else {
 				player.currentRoom = nextRoom;
 				Console.WriteLine(player.currentRoom.getLongDescription());
                 if (player.health < 100 )

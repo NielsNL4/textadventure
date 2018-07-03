@@ -12,6 +12,10 @@ namespace ZuulCS
 
         internal Inventory Inventory { get => inventory; }
 
+        private bool locked = false;
+
+        internal bool Locked { get => locked; set => locked = value; }
+
         /**
 	     * Create a room described "description". Initially, it has no exits.
 	     * "description" is something like "in a kitchen" or "in an open court
@@ -89,5 +93,23 @@ namespace ZuulCS
 			}
 
 		}
+
+        public void setLocked()
+        {
+            this.locked = true;
+        }
+
+        public void unlock()
+        {
+            if (this.locked)
+            {
+                this.locked = false;
+                System.Console.WriteLine("This room is now unlocked");
+            }
+            else
+            {
+                System.Console.WriteLine("This room was already unlocked");
+            }
+        }
 	}
 }

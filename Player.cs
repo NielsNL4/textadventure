@@ -6,6 +6,11 @@ namespace ZuulCS
     class Player
     {
         private Room _currentRoom;
+
+        private Room lockedRoom;
+
+        internal Room LockedRoom { get => lockedRoom; }
+
         public uint health = 100;
 
         //public Game game;
@@ -14,6 +19,7 @@ namespace ZuulCS
 
         internal Inventory Inventory { get => inventory; }
 
+
         public Player()
         {
             inventory = new Inventory(8);
@@ -21,7 +27,7 @@ namespace ZuulCS
 
         public void createRooms()
         {
-            Room Big_Tree, Old_Shack, Cave, Path, shacksecondfloor, Village, Church, Blacksmith, House1, House2, ChurchAttic;
+            Room Big_Tree, Old_Shack, Cave, Path, shacksecondfloor, Village, Church, Blacksmith, House1, House2, ChurchAttic, Tunnel;
 
             // create the rooms
             Big_Tree = new Room("next to a big tree");
@@ -35,6 +41,7 @@ namespace ZuulCS
             House2 = new Room("in an empty house");
             Blacksmith = new Room("at the blacksmith");
             ChurchAttic = new Room("in the church attic");
+            Tunnel = new Room("in a secret tunnel");
 
             // initialise room exits
             Big_Tree.setExit("east", Old_Shack);
@@ -58,6 +65,7 @@ namespace ZuulCS
             ChurchAttic.setExit("down", Church);
 
             Blacksmith.setExit("north", Village);
+            Blacksmith.setExit("down", Tunnel);
 
             House1.setExit("west", House2);
             House1.setExit("east", Village);
@@ -70,13 +78,17 @@ namespace ZuulCS
 
             _currentRoom = Big_Tree;  // start game outside
 
+            lockedRoom = Tunnel;
+
+            Tunnel.setLocked();
+
             for (int i = 0; i < 1; i++)
             {
                 Potion potion = new Potion();
                 Big_Tree.Inventory.addItem(potion);
                 Church.Inventory.addItem(potion);
                 Path.Inventory.addItem(potion);
- 
+
                 Stake stake = new Stake();
                 Old_Shack.Inventory.addItem(stake);
                 House2.Inventory.addItem(stake);
@@ -87,8 +99,15 @@ namespace ZuulCS
                 Cave.Inventory.addItem(vial);
                 House1.Inventory.addItem(vial);
                 ChurchAttic.Inventory.addItem(vial);
-                
+
+                Key key = new Key();
+                House2.Inventory.addItem(key);
             }
+        }
+
+        public void Unlock()
+        {
+            lockedRoom.unlock();
         }
 
         public Room currentRoom
@@ -96,6 +115,7 @@ namespace ZuulCS
             get { return this._currentRoom; }
             set { this._currentRoom = value; }
         }
+
 
         public void isAlive()
         {

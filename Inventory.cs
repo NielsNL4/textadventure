@@ -85,6 +85,12 @@ namespace TextAdventure.src
                         items.Remove(items[i]);
                         return (true);
                     }
+                    if (key == "key")
+                    {
+                        player.Unlock();
+                        items.Remove(items[i]);
+                        return (true);
+                    }
                 }
             }
             return (false);
